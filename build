@@ -1,0 +1,17 @@
+#!/bin/env sh
+
+echo -n "please, enter the container name: "
+read CONTAINER
+echo -n "please, enter your username: "
+read USERNAME
+echo -n "please, enter your password: "
+read PASSWORD
+
+docker build\
+    -f midori-env.Dockerfile\
+    -t ${CONTAINER}\
+    --build-arg USERNAME="${USERNAME}"\
+    --build-arg PASSWORD="${PASSWORD}"\
+    --build-arg USER_ID=$(id -u)\
+    --build-arg GROUP_ID=$(id -g)\
+    .

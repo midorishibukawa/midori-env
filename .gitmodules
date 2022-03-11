@@ -1,0 +1,3 @@
+[submodule "src/.local"]
+	path = src/.local
+	url = https://github.com/midorishibukawa/dotfiles.git
