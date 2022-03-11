@@ -24,9 +24,9 @@ SHELL ["/usr/bin/zsh", "-c"]
 
 
 # SET ENVIRONMENT VARIABLES
-ENV HOME=/home/${USERNAME}
-ENV ZDOTDIR=${HOME}/.local/etc/zsh\
-    ZSH_PLUGINS=${HOME}/.local/share/zsh
+ARG HOME=/home/${USERNAME}
+ARG ZSH_PLUGINS=${HOME}/.local/share/zsh
+ENV ZDOTDIR=${HOME}/.local/etc/zsh
 
 
 # COPY SRC TO CONTAINER HOME
@@ -36,7 +36,7 @@ COPY --chown=${USERNAME}:admin src/.local ${HOME}/.local
 # HOME DIR CLEANUP AND DIRECTORY STRUCTURE SETUP
 WORKDIR ${HOME}
 RUN rm .bash* .profile &&\
-    echo "\nexport ZDOTDIR=\"\${XDG_CONFIG_HOME}\"/zsh" >> /etc/profile
+    echo "\nexport ZDOTDIR=\"\${XDG_CONFIG_HOME}\"/zsh\n" >> /etc/profile
 
 
 # ZSH PLUGIN SETUP
